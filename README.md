@@ -34,4 +34,4 @@ The test checks the catalog, filtering, search, basket totals, playful produce i
 
 ## 🚀 Publishing
 
-Pushing to `main` builds the site and deploys it to [GitHub Pages](https://isaac1376.github.io/Selenium-test/) with GitHub Actions.
+In the repository, choose **Settings → Pages → Source → GitHub Actions** once. After that, pushing to `main` builds the site and deploys it to [GitHub Pages](https://isaac1376.github.io/Selenium-test/) automatically.
