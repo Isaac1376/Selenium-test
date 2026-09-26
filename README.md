@@ -34,4 +34,7 @@ The test checks the catalog, filtering, search, basket totals, playful produce i
 
 ## 🚀 Publishing
 
+<img width="1024" height="1536" alt="ChatGPT Image Sep 26, 2026, 03_05_48 PM" src="https://github.com/user-attachments/assets/05e378bc-1cc9-4070-87f9-da34fac45a89" />
+
+
 In the repository, choose **Settings → Pages → Source → GitHub Actions** once. After that, pushing to `main` builds the site and deploys it to [GitHub Pages](https://isaac1376.github.io/Selenium-test/) automatically.
