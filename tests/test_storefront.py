@@ -38,7 +38,7 @@ class StorefrontSmokeTest(unittest.TestCase):
         wait = self.wait
 
         self.assertEqual(driver.title, 'Good Things Market | Fresh, on your time')
-        self.assertEqual(len(driver.find_elements(By.CSS_SELECTOR, '.product-card')), 8)
+        self.assertEqual(len(driver.find_elements(By.CSS_SELECTOR, '.product-card')), 10)
 
         self.click_visible('[data-category="Bakery"]')
         wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, '.product-card'), 'Country sourdough'))
@@ -62,6 +62,18 @@ class StorefrontSmokeTest(unittest.TestCase):
         self.click_visible('[data-quantity="strawberries"][data-change="1"]')
         self.assertEqual(driver.find_element(By.CSS_SELECTOR, '.cart-count').text, '2')
         self.assertEqual(driver.find_element(By.CSS_SELECTOR, '.subtotal strong').text, '$10.98')
+
+        driver.refresh()
+        wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, '.cart-count'), '2'))
+        self.click_visible('.cart-toggle')
+        self.click_visible('.checkout-button')
+        driver.find_element(By.NAME, 'name').send_keys('Taylor Neighbor')
+        driver.find_element(By.NAME, 'address').send_keys('12 Market Street')
+        driver.find_element(By.NAME, 'email').send_keys('taylor@example.com')
+        self.click_visible('.checkout-form button[type="submit"]')
+        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '.cart-confirmation')))
+        self.assertRegex(driver.find_element(By.CSS_SELECTOR, '.order-number').text, r'^GT-\d{6}$')
+        self.assertEqual(driver.find_element(By.CSS_SELECTOR, '.cart-count').text, '0')
 
         self.click_visible('.cart-close')
         floating_item = self.click_visible('.float-orange')
